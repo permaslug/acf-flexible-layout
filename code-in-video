@@ -1,0 +1,33 @@
+<?php if( have_rows('content') ): ?>
+    <?php while( have_rows('content') ): the_row(); ?>
+
+
+        <?php if( get_row_layout() == 'split_text' ): ?>
+            <div class='split-text'>
+                <div class='split-text-left'><?php the_sub_field('left_half_text'); ?></div>
+                <div class='split-text-right'><?php the_sub_field('right_half_text'); ?></div>
+			</div>
+
+        <?php elseif( get_row_layout() == 'image_on_left' ): ?>
+                        
+
+			<div class='image-on-left'>
+             <div class='image-left-50'>
+              <?php
+                  $image = get_sub_field( 'image' );
+                  if ( $image ) : ?>
+                      <img src="<?php echo esc_url( $image['url'] ); ?>" width="100%" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
+                <?php endif; ?>
+              </div>
+              <div class='text-right-50'>
+              <?php if ( $text = get_sub_field( 'text' ) ) : ?>
+                  <?php echo $text; ?>
+              <?php endif; ?>
+              </div>
+			</div>	
+
+
+
+        <?php endif; ?>
+    <?php endwhile; ?>
+<?php endif; ?>
