@@ -1,0 +1,45 @@
+<div class="prereqs-rows">
+<?php if( have_rows('event_prerequisites_fc') ): ?>
+    <?php while( have_rows('event_prerequisites_fc') ): the_row(); ?>
+
+		
+        <?php if( get_row_layout() == 'single_prereq' ): ?>
+
+            <div class='prereq-card'>
+                <a href="<?php the_sub_field('prereq_single_link'); ?>" target="_blank">
+					<div><?php the_sub_field('prereq_single_name'); ?></div>
+				</a>
+			</div>
+	<div class="prereq-and">		
+	And
+	</div>
+        <?php elseif( get_row_layout() == 'prereq_with_alternatives' ): ?>
+                        
+            <div class='prereq-card'>
+                <a href="<?php the_sub_field('Primary Prereq Link'); ?>" target="_blank">
+					<div><?php the_sub_field('Primary_Prereq_Name'); ?></div>
+				</a>
+			</div>
+	<div class="prereq-or">		
+	OR
+	</div>
+			<div class="alt-prereq-list">
+			<?php if ( have_rows( 'prereq_alt_list' ) ) : ?>
+				<?php while ( have_rows( 'prereq_alt_list' ) ) : the_row(); ?>
+
+				
+					<div class='prereq-card'>
+						<a href="<?php the_sub_field('alt_prereq_link'); ?>" target="_blank">
+							<div><?php the_sub_field('alt_prereq_name'); ?></div>
+						</a>
+					</div>
+						
+
+				<?php endwhile; ?>
+			<?php endif; ?>
+			</div>
+
+        <?php endif; ?>
+    <?php endwhile; ?>
+<?php endif; ?>
+</div>
